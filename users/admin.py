@@ -9,6 +9,26 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'phone_number', 'website', 'picture')
     list_display_links = ('user', 'phone_number')
     list_editable = ('website', 'picture')
-    list_filter = ('created', 'modified', 'user__is_active', 'user__is_staff')
-    search_fields = ('user__email', 'user__firstname',
-                     'user__lastname', 'phone_number')
+    list_filter = (
+        'created',
+        'modified',
+        'user__is_active',
+        'user__is_staff'
+    )
+    search_fields = (
+        'user__email',
+        'user__firstname',
+        'user__lastname',
+        'phone_number'
+    )
+    fieldset = (
+        ('Profile', {
+            'fields': (('user', 'picture'),),
+        }),
+        ('extra inf', {
+            'fields': (
+                ('website', 'phone_number'),
+                ('biografy')
+            )
+        })
+    )
